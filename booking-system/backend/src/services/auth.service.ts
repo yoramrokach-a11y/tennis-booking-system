@@ -89,14 +89,19 @@ export class AuthService {
   /**
    * Generates a signed jsonwebtoken for authorized request authentication.
    */
-  private generateToken(user: UserResponse): string {
-    const payload = {
-      id: user.id,
-      email: user.email,
-      role: user.role,
-      name: user.name,
-    };
+private generateToken(user: UserResponse): string {
+  const payload = {
+    id: user.id,
+    email: user.email,
+    role: user.role,
+    name: user.name,
+  };
 
-    return jwt.sign(payload, this.jwtSecret, { expiresIn: this.jwtExpiresIn });
-  }
+  const secret: jwt.Secret = process.env.JWT_SECRET as string;
+
+  const expiresIn: jwt.SignOptions['expiresIn'] =
+    (process.env.JWT_EXPIRES_IN as jwt.SignOptions['expiresIn']) || '1d';
+
+  return jwt.sign(payload, secret, { expiresIn });
+}
 }
