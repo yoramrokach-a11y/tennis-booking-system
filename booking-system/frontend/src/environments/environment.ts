@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000/api/v1' // Points to localized backend container
+  apiUrl: 'https://tennis-backend-b0o6.onrender.com/api/v1'
 };
