@@ -1,0 +1,6 @@
+{
+  "name": "Tennis Court Booking System Architecture",
+  "description": "A production-ready architecture blueprint for a Tennis Court Booking System featuring an Angular 20 frontend and Express/TypeScript/PostgreSQL backend.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
