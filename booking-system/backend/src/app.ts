@@ -62,17 +62,11 @@ export function createApplication(): Express {
 /**
  * Initialize Server Listener if executed directly as entrypoint.
  */
-if (process.env.NODE_ENV !== 'test') {
-  const app = createApplication();
-  const PORT = parseInt(process.env.SERVER_PORT || '5000', 10);
-  const HOST = process.env.SERVER_HOST || '0.0.0.0';
+const app = createApplication();
 
-  app.listen(PORT, HOST, () => {
-    console.log(`===================================================`);
-    console.log(`[AceReserve Service]: Active and listening.`);
-    console.log(`- Connection URL : http://${HOST}:${PORT}`);
-    console.log(`- Health Check   : http://${HOST}:${PORT}/health`);
-    console.log(`- Environment    : ${process.env.NODE_ENV || 'development'}`);
-    console.log(`===================================================`);
-  });
-}
+const PORT = parseInt(process.env.PORT || process.env.SERVER_PORT || '5000', 10);
+const HOST = process.env.SERVER_HOST || '0.0.0.0';
+
+app.listen(PORT, HOST, () => {
+  console.log(`Server running on http://${HOST}:${PORT}`);
+});
