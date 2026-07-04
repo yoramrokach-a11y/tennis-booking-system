@@ -12,12 +12,17 @@ export class AuthService {
   private http = inject(HttpClient);
   private apiUrl = `${environment.apiUrl}/auth`;
 
-  private currentUserSubject = new BehaviorSubject<User | null>(null);
+ private currentUserSubject = new BehaviorSubject<any>(this.loadUser());
   public currentUser$ = this.currentUserSubject.asObservable();
 
   constructor() {
     this.loadPersistedUser();
   }
+
+private loadUser() {
+  const user = localStorage.getItem('user');
+  return user ? JSON.parse(user) : null;
+}  
 
   public get currentUserValue(): User | null {
     return this.currentUserSubject.value;
