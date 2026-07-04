@@ -529,15 +529,14 @@ export class DashboardComponent implements OnInit {
   /**
    * Evaluates if a court has a reservation occupying a specific standard hour today.
    */
-  public isHourBooked(courtId: number, hour: number, bookings: Booking[]): boolean {
-    return bookings.some(b => 
-      b.courtId === courtId && 
-      b.bookingDate === this.todayStr &&
-      b.status !== 'CANCELLED' &&
-      hour >= b.startHour && 
-      hour < (b.startHour + b.hours)
-    );
-  }
+isHourBooked(courtId: number, hour: number, bookings: any[]): boolean {
+  return bookings.some(b => 
+    Number(b.courtId) === Number(courtId) &&
+    b.bookingDate === this.todayStr &&
+    hour >= b.startHour &&
+    hour < b.startHour + b.hours
+  );
+}
 
   /**
    * Helper to return tooltip metadata about a specific slot.
