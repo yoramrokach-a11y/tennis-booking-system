@@ -1,5 +1,6 @@
 import express, { Express } from 'express';
 import { dbPool } from './config/database';
+import cors from 'cors';
 
 // Repositories
 import { UserRepository } from './repositories/user.repository';
