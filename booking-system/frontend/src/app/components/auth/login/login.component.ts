@@ -104,17 +104,17 @@ export class LoginComponent {
 
     this.loading = true;
     this.authService.login(this.loginForm.value).subscribe({
-    next: (res) => {
-      localStorage.setItem('token', res.data.token);
-      localStorage.setItem('user', JSON.stringify(res.data.user));
-    
-      this.loading = false;
-    
-      const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/bookings';
-      this.router.navigate([returnUrl]);
-    
-      this.snackBar.open('Logged in successfully!', 'Close', { duration: 3000 });
-    },
+next: (res: any) => {
+  localStorage.setItem('token', res.data.token);
+  localStorage.setItem('user', JSON.stringify(res.data.user));
+
+  this.loading = false;
+
+  const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/bookings';
+  this.router.navigate([returnUrl]);
+
+  this.snackBar.open('Logged in successfully!', 'Close', { duration: 3000 });
+},
       error: (err) => {
         this.loading = false;
         this.snackBar.open(err.message, 'Close', { duration: 5000 });
