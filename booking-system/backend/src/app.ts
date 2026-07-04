@@ -30,6 +30,10 @@ import { globalErrorHandler } from './middleware/error.middleware';
 export function createApplication(): Express {
   const app = express();
 
+  app.use(cors({
+  origin: '*'
+}));  
+
   // 1. Global Middleware Pipelines
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
@@ -57,9 +61,7 @@ export function createApplication(): Express {
   // 4. Global Error Capturing Interceptor
   app.use(globalErrorHandler);
 
-app.use(cors({
-  origin: '*'
-}));  
+
 
   return app;
 }
