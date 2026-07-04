@@ -19,6 +19,11 @@ export class AuthService {
     this.loadPersistedUser();
   }
 
+setUser(user: any) {
+  this.currentUserSubject.next(user);
+  localStorage.setItem('user', JSON.stringify(user));
+}  
+
 private loadUser() {
   const user = localStorage.getItem('user');
   return user ? JSON.parse(user) : null;
