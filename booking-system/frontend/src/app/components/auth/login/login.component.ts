@@ -105,6 +105,7 @@ export class LoginComponent {
     this.loading = true;
     this.authService.login(this.loginForm.value).subscribe({
 next: (res: any) => {
+  console.log('LOGIN RESPONSE:', res);
   localStorage.setItem('token', res.data.token);
   localStorage.setItem('user', JSON.stringify(res.data.user));
 
