@@ -108,15 +108,13 @@ next: (res: any) => {
   console.log('LOGIN RESPONSE:', res);
 
   localStorage.setItem('token', res.data.token);
-  localStorage.setItem('user', JSON.stringify(res.data.user));
+
+  this.authService.setUser(res.data.user);
 
   this.loading = false;
 
   const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
-
-  setTimeout(() => {
-    this.router.navigate([returnUrl]);
-  });
+  this.router.navigate([returnUrl]);
 
   this.snackBar.open('Logged in successfully!', 'Close', { duration: 3000 });
 },
