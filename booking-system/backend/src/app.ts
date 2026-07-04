@@ -56,6 +56,10 @@ export function createApplication(): Express {
   // 4. Global Error Capturing Interceptor
   app.use(globalErrorHandler);
 
+app.use(cors({
+  origin: '*'
+}));  
+
   return app;
 }
 
