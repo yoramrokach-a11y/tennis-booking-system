@@ -530,12 +530,17 @@ export class DashboardComponent implements OnInit {
    * Evaluates if a court has a reservation occupying a specific standard hour today.
    */
 isHourBooked(courtId: number, hour: number, bookings: any[]): boolean {
-  return bookings.some(b => 
-    Number(b.courtId) === Number(courtId) &&
-    b.bookingDate === this.todayStr &&
-    hour >= b.startHour &&
-    hour < b.startHour + b.hours
-  );
+  return bookings.some(b => {
+    const start = Number(b.startHour);
+    const end = start + Number(b.hours);
+
+    return (
+      Number(b.courtId) === Number(courtId) &&
+      b.bookingDate === this.todayStr &&
+      hour >= start &&
+      hour < end
+    );
+  });
 }
 
   /**
